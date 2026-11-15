@@ -7,6 +7,10 @@ import { ref } from "vue";
 import { useAuthStore } from "@/store/auth";
 import { USE_MOCK } from "@/config";
 import { resetScenario, scenario, type WxLoginOutcome } from "@/mock/scenario";
+import { getStatusbarHeightCss } from "@/utils/system";
+
+/** 自定义导航顶部动态注入真实状态栏高度（真机 --status-bar-height 非真实值） */
+const statusBarHeightCss = getStatusbarHeightCss();
 
 const authStore = useAuthStore();
 const version = ref("1.0.0");
@@ -89,7 +93,7 @@ function onResetScenario(): void {
 </script>
 
 <template>
-  <view class="mine">
+  <view class="mine" :style="{ '--status-bar-height': statusBarHeightCss }">
     <view class="mine__nav">
       <text class="mine__nav-title">我的</text>
     </view>
@@ -320,7 +324,10 @@ function onResetScenario(): void {
 
   &__modal {
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background-color: rgba(0, 0, 0, 0.45);
     z-index: 200;
     display: flex;

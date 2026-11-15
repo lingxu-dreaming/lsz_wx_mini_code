@@ -17,6 +17,10 @@ import SearchBar from "@/components/search-bar.vue";
 import FilterPanel from "@/components/filter-panel.vue";
 import LoadState from "@/components/load-state.vue";
 import OrderListItem from "@/components/order-list-item.vue";
+import { getStatusbarHeightCss } from "@/utils/system";
+
+/** 自定义导航顶部动态注入真实状态栏高度（真机 --status-bar-height 非真实值） */
+const statusBarHeightCss = getStatusbarHeightCss();
 
 const { list, status, loadingMore, noMore, refresh, loadMore, search, applyFilters } =
   useOrderList("pending");
@@ -64,7 +68,7 @@ function goDetail(item: ApprovalOrderItem): void {
 </script>
 
 <template>
-  <view class="page">
+  <view class="page" :style="{ '--status-bar-height': statusBarHeightCss }">
     <view class="page__nav">
       <text class="page__nav-title">待处置</text>
     </view>
