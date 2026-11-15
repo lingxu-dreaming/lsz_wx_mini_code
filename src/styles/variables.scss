@@ -1,0 +1,31 @@
+/**
+ * 全局 SCSS 变量（uni.scss 会自动注入到所有页面的 style 中）。
+ * 主题色 / 文本色 / 圆角等统一在此维护。
+ */
+
+$color-primary: #2f6bff;
+$color-primary-light: #e8efff;
+$color-danger: #e5484d;
+$color-danger-light: #fdecec;
+$color-success: #00a870;
+$color-success-light: #e6f7f0;
+$color-warning: #ff8800;
+$color-warning-light: #fff3e5;
+$color-info: #8a8f99;
+$color-info-light: #f2f3f5;
+
+$color-text: #1f2329;
+$color-text-secondary: #646a73;
+$color-text-placeholder: #8a8f99;
+$color-border: #e5e6eb;
+$color-bg: #f5f6f8;
+$color-white: #ffffff;
+
+$radius-sm: 8rpx;
+$radius-md: 16rpx;
+$radius-lg: 24rpx;
+
+$font-size-sm: 24rpx;
+$font-size-base: 28rpx;
+$font-size-lg: 32rpx;
+$font-size-xl: 36rpx;

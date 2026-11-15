@@ -1,9 +1,11 @@
 # CLAUDE.md - 微信小程序开发规范
 
 ## 1. 技术栈与运行环境
-- **框架与语言：** Uni-app (Vue 3 `<script setup>` + TypeScript + Vite) / 原生微信小程序（若使用原生请将 `uni.*` 映射为 `wx.*`）
-- **状态与样式：** Pinia + Tailwind CSS / SCSS（需适配 `rpx` 与底部安全区 `env(safe-area-inset-bottom)`）
+- **框架与语言：** Uni-app (Vue 3 `<script setup>` + TypeScript + Vite)。
+- **状态与样式：** Pinia + SCSS（`uni.scss` 全局注入，尺寸用 `rpx`，底部适配 `env(safe-area-inset-bottom)`）。
 - **兼容基准：** 微信客户端 ≥ 8.0，基础库 ≥ 2.20.0；适配 320px ~ 430px 主流屏幕[cite: 1]
+- **常用命令：** `npm run dev:mp-weixin`（开发者工具联调前必须保持运行）、`npm run type-check`（提交前必过）、`npm run build:mp-weixin`。
+- **Mock 开关：** `.env.development` / `.env.production` 中的 `VITE_USE_MOCK` 与 `VITE_BASE_URL`。
 
 ## 2. 目录结构与命名
 - `src/pages/` - 页面视图（如 `launch/`、`login/`、`pending/`、`history/`、`detail/`、`mine/`）[cite: 1]
@@ -19,6 +21,11 @@
 - **状态与数据流：** 列表页必须实现分页加载（每页 20 条，触底加载）与下拉刷新；搜索输入统一做 300ms 防抖[cite: 1]。
 - **弱网与状态兜底：** 必须完整覆盖加载中（Skeleton/Loading）、空数据（Empty）与网络异常（支持点击重试，严禁白屏）三种视图状态[cite: 1]。
 - **iOS 兼容：** 日期字符串解析前必须将 `-` 替换为 `/`，避免 iOS 端出现 `NaN`。
+- 避免“魔法数字”，使用常量命名
+- 添加调试信息
+- 注释：JSDoc必需
+- 行数：函数<50行，类<300行
+- 考虑函数复用
 
 ## 4. 网络层与鉴权机制
 - **请求配置：** 全局超时 5000ms，网络异常自动重试 1 次[cite: 1]；统一响应结构 `{ code, msg, data, traceId }`[cite: 1]。
